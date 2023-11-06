@@ -1,11 +1,19 @@
-
+import React, {useState} from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import WeatherHome from './components/WeatherHome';
 import './App.css';
 
-function App() {
+const App = () => {
+ const [isDarkMode, setIsDarkMode] = useState(true)
+
+
   return (
-    <div className="App">
-      MAUSAMMMMMmmmm
-    </div>
+    <>
+      <Header  isDarkMode = {isDarkMode}/>
+      <WeatherHome />
+      <Footer  isDarkMode = {isDarkMode}/>
+    </>
   );
 }
 
