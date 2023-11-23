@@ -1,6 +1,8 @@
 import React from 'react';
+import '../App.css'
 
 const WeatherLeftPanel = (props)=> {
+    
 
     const {
         isDarkMode,
@@ -9,10 +11,16 @@ const WeatherLeftPanel = (props)=> {
         setCityInput,
         randomCity,
         getMausamData,
+        msg,
+        useImg,
     } =props;
     const {main, weather, wind, name} = randomCity;
     // const {temp,humidity} = main;
 const tapaman = main ? main.temp - 273.15 : '';
+const mausamDesc = weather ? weather[0].description : '';
+const windSpeedConversion= wind ? wind.speed* 3.6:''
+
+
     return(
         <>
             <div className="weather_container_left_panel">
@@ -22,11 +30,6 @@ const tapaman = main ? main.temp - 273.15 : '';
                         {/* Button */}
                     </div>
                     <div className="weather_container_time_and_input_div my-2">
-          {/* <WeatherDataLabel
-            dataTitle="data-time-stamp"
-            style={{ fontWeight: 900, display: "block" }}
-            buttonInnerText={currentTime}
-          /> */}
                         <input
                             type="text"
                             placeholder="Enter the Location"
@@ -38,6 +41,7 @@ const tapaman = main ? main.temp - 273.15 : '';
                             }
                             }}
                         />
+                        {cityInput && msg && <div className='not-found-msg'>{msg}</div>}
                     </div> 
                     <button 
                         type="button"
@@ -46,9 +50,23 @@ const tapaman = main ? main.temp - 273.15 : '';
                         >
                         Hit
                     </button>
-                    {randomCity && 
+                    {randomCity && cityInput && 
                     <div className='mausam-detail'>
-                            <strong className='mausam-temp'>{tapaman.toFixed(2)}°C</strong>
+                        <div className='mausam-title'>{`${cityInput.toUpperCase()} weather:-`}</div>
+                        <div className='mausam-wrapper'>
+                            <div className='mausam-left'>
+                                <div className='mausam-look'>{mausamDesc}</div>
+                                <div className='mausam-temp'>{tapaman.toFixed(2)}°C</div>
+                            </div>
+                            <div className='mausam-mid'>
+                            <img src = {useImg} alt ='mausam-icon'/>
+                            </div>
+                            <div className='mausam-right'>
+                                <div>{`wind-speed:${windSpeedConversion.toFixed(2)} km/h`}</div>
+                                <div>{`humidity:${main.humidity}`} %</div>
+                            </div>
+                        </div>
+                        
                     </div>}
                 </div>
 

@@ -8,3 +8,17 @@
   background-color: #fff;
   color: #222;
 }
+
+.not-found-msg {
+  color: red;
+}
+
+.mausam-title {
+  font-weight: bold;
+}
+
+.mausam-wrapper {
+  display: flex;
+  gap: 20px;
+ /* justify-content: space-between; */
+}
