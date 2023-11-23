@@ -10,7 +10,9 @@ const WeatherLeftPanel = (props)=> {
         randomCity,
         getMausamData,
     } =props;
-
+    const {main, weather, wind, name} = randomCity;
+    // const {temp,humidity} = main;
+const tapaman = main ? main.temp - 273.15 : '';
     return(
         <>
             <div className="weather_container_left_panel">
@@ -27,8 +29,8 @@ const WeatherLeftPanel = (props)=> {
           /> */}
                         <input
                             type="text"
-                            placeholder="Search for city"
-                            value={cityInput}
+                            placeholder="Enter the Location"
+                            // value={cityInput}
                             onChange={(e) => setCityInput(e.target.value)}
                             onKeyDown={(e) => {
                             if (e.key === 'Enter') {
@@ -36,7 +38,18 @@ const WeatherLeftPanel = (props)=> {
                             }
                             }}
                         />
-                    </div>
+                    </div> 
+                    <button 
+                        type="button"
+                        className="btn btn-primary mb-3 mt-3"
+                        onClick={() => getMausamData(cityInput)}
+                        >
+                        Hit
+                    </button>
+                    {randomCity && 
+                    <div className='mausam-detail'>
+                            <strong className='mausam-temp'>{tapaman.toFixed(2)}°C</strong>
+                    </div>}
                 </div>
 
             </div>
